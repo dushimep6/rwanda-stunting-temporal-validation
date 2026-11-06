@@ -1,0 +1,12 @@
+# Never upload: licensed logs, survey data, per-child outputs
+*.log
+*.dta
+*.sav
+*.pkl
+*.xlsx
+venv/
+__pycache__/
+t7_cache*/
+# Survey-level summary tables in results/ are aggregate only and are allowed.
+*.csv
+!results/*.csv
