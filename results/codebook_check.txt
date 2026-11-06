@@ -1,0 +1,264 @@
+====================================================================================================
+b4
+  [2019-20] label: 'sex of child'; stored as int8; missing 0.0%
+      min 1  max 2  distinct 2
+      values: male = 1920; female = 1889
+  [2024-25] label: 'sex of child'; stored as int8; missing 0.0%
+      min 1  max 2  distinct 2
+      values: female = 3362; male = 3353
+====================================================================================================
+bord
+  [2019-20] label: 'birth order number'; stored as int8; missing 0.0%
+      min 1  max 12  distinct 12
+      values: 1 = 911; 2 = 863; 3 = 725; 4 = 478; 5 = 303; 6 = 231; 7 = 160; 8 = 80; 9 = 32; 10 = 21; 11 = 3; 12 = 2
+  [2024-25] label: 'birth order number'; stored as int8; missing 0.0%
+      min 1  max 13  distinct 13
+      most frequent: 1 = 2049; 2 = 1554; 3 = 1165; 4 = 871; 5 = 494; 6 = 265; 7 = 151; 8 = 89;  highest values: 13 (n=2), 12 (n=2), 11 (n=11), 10 (n=19), 9 (n=43)
+====================================================================================================
+b0
+  [2019-20] label: 'child is twin'; stored as int8; missing 0.0%
+      min 0  max 2  distinct 3
+      values: single birth = 3708; 1st of multiple = 52; 2nd of multiple = 49
+  [2024-25] label: 'child is twin'; stored as int8; missing 0.0%
+      min 0  max 2  distinct 3
+      values: single birth = 6527; 1st of multiple = 96; 2nd of multiple = 92
+====================================================================================================
+hw1
+  [2019-20] label: "child's age in months"; stored as int8; missing 0.0%
+      min 0  max 59  distinct 60
+      most frequent: 28 = 80; 32 = 79; 10 = 78; 29 = 78; 13 = 77; 14 = 76; 43 = 76; 7 = 76;  highest values: 59 (n=68), 58 (n=49), 57 (n=61), 56 (n=66), 55 (n=63)
+  [2024-25] label: "child's age in months"; stored as int8; missing 0.0%
+      min 0  max 59  distinct 60
+      most frequent: 9 = 143; 4 = 140; 36 = 137; 38 = 134; 14 = 127; 34 = 126; 18 = 126; 16 = 125;  highest values: 59 (n=97), 58 (n=106), 57 (n=90), 56 (n=98), 55 (n=98)
+====================================================================================================
+first_birth
+  [2019-20] label: 'First-born child'; stored as int8; missing 0.0%
+      min 0  max 1  distinct 2
+      values: 0 = 2898; 1 = 911
+  [2024-25] label: 'First-born child'; stored as int8; missing 0.0%
+      min 0  max 1  distinct 2
+      values: 0 = 4666; 1 = 2049
+====================================================================================================
+lbw
+  [2019-20] label: ''; stored as float64; missing 5.1%
+      min 0  max 1  distinct 2
+      values: Not low birth weight = 3389; Low birth weight = 224
+  [2024-25] label: ''; stored as float64; missing 39.6%
+      min 0  max 1  distinct 2
+      values: Not low birth weight = 3731; Low birth weight = 324
+====================================================================================================
+birth_weight
+  [2019-20] label: 'Birth weight (g)'; stored as float32; missing 5.1%
+      min 800  max 6000  distinct 82
+      most frequent: 3000 = 503; 3500 = 354; 3200 = 284; 3800 = 258; 2800 = 233; 4000 = 184; 2500 = 169; 3400 = 160;  highest values: 6000 (n=3), 5900 (n=2), 5800 (n=4), 5600 (n=1), 5500 (n=1)
+  [2024-25] label: 'Birth weight (g)'; stored as float32; missing 39.6%
+      min 800  max 6000  distinct 92
+      most frequent: 3000 = 492; 3500 = 382; 3200 = 336; 2800 = 321; 3800 = 319; 3100 = 191; 3400 = 183; 2500 = 168;  highest values: 6000 (n=3), 5800 (n=2), 5700 (n=2), 5500 (n=2), 5400 (n=1)
+====================================================================================================
+bf_months
+  [2019-20] label: 'Months of breastfeeding'; stored as float32; missing 53.4%
+      min 0  max 48  distinct 48
+      most frequent: 10 = 74; 3 = 73; 13 = 73; 7 = 73; 14 = 69; 16 = 67; 11 = 66; 8 = 66;  highest values: 48 (n=1), 47 (n=2), 46 (n=3), 45 (n=2), 44 (n=4)
+  [2024-25] label: 'Months of breastfeeding'; stored as float32; missing 55.0%
+      min 0  max 35  distinct 36
+      most frequent: 9 = 145; 4 = 140; 0 = 125; 14 = 123; 5 = 123; 7 = 122; 10 = 119; 2 = 118;  highest values: 35 (n=12), 34 (n=18), 33 (n=12), 32 (n=14), 31 (n=24)
+====================================================================================================
+still_breastfeeding
+  [2019-20] label: 'Currently breastfeeding'; stored as int8; missing 0.0%
+      min 0  max 1  distinct 2
+      values: Not currently breastfeeding = 2033; Currently breastfeeding = 1776
+  [2024-25] label: 'Currently breastfeeding'; stored as float64; missing 38.7%
+      min 0  max 1  distinct 2
+      values: Currently breastfeeding = 3019; Not currently breastfeeding = 1095
+====================================================================================================
+v106
+  [2019-20] label: 'highest educational level'; stored as int8; missing 0.0%
+      min 0  max 3  distinct 4
+      values: primary = 2486; secondary = 695; no education = 452; higher = 176
+  [2024-25] label: 'highest educational level'; stored as int8; missing 0.0%
+      min 0  max 3  distinct 4
+      values: primary = 4012; secondary = 1952; no education = 423; higher = 328
+====================================================================================================
+mother_bmi
+  [2019-20] label: 'Maternal BMI (kg/m2)'; stored as float64; missing 0.0%
+      min 15.68  max 47.43  distinct 1224
+      most frequent: 21.77 = 15; 23.25 = 13; 22.03 = 13; 20.49 = 12; 23.93 = 12; 20.13 = 12; 25.57 = 11; 21.08 = 11;  highest values: 47.43 (n=2), 46.49 (n=1), 44.56 (n=1), 43.63 (n=1), 43.52 (n=2)
+  [2024-25] label: 'Maternal BMI (kg/m2)'; stored as float64; missing 50.5%
+      min 15.83  max 47.21  distinct 1274
+      most frequent: 22.2 = 12; 20.16 = 10; 23.58 = 10; 25.85 = 10; 21.84 = 10; 22.24 = 10; 20.76 = 10; 21.45 = 10;  highest values: 47.21 (n=1), 46.67 (n=1), 46.11 (n=2), 45.55 (n=1), 45.03 (n=1)
+====================================================================================================
+mother_height
+  [2019-20] label: 'Maternal height (cm)'; stored as float32; missing 0.0%
+      min 136.9  max 181.1  distinct 321
+      most frequent: 156.4 = 50; 154.6 = 42; 157.6 = 38; 160.2 = 37; 157.8 = 36; 155.4 = 35; 158.1 = 34; 158.6 = 34;  highest values: 181.1 (n=1), 176.4 (n=2), 176 (n=1), 175.4 (n=1), 174.8 (n=1)
+  [2024-25] label: 'Maternal height (cm)'; stored as float32; missing 50.5%
+      min 113.6  max 177.5  distinct 306
+      most frequent: 157 = 45; 155 = 37; 160.5 = 33; 156.8 = 31; 155.1 = 30; 162.3 = 30; 159 = 30; 162 = 30;  highest values: 177.5 (n=1), 176 (n=2), 174.5 (n=1), 174.2 (n=2), 174.1 (n=2)
+====================================================================================================
+literacy
+  [2019-20] label: 'Maternal literacy category'; stored as float64; missing 0.1%
+      min 0  max 2  distinct 3
+      values: 2.0 = 2710; 0.0 = 683; 1.0 = 412
+  [2024-25] label: 'Maternal literacy category'; stored as float64; missing 0.1%
+      min 0  max 2  distinct 3
+      values: 2.0 = 5131; 0.0 = 848; 1.0 = 728
+====================================================================================================
+anc_visits
+  [2019-20] label: 'Number of antenatal care visits'; stored as float32; missing 22.2%
+      min 0  max 10  distinct 11
+      values: 4.0 = 1307; 3.0 = 1059; 2.0 = 344; 1.0 = 122; 0.0 = 60; 5.0 = 58; 6.0 = 8; 9.0 = 3; 8.0 = 1; 7.0 = 1; 10.0 = 1
+  [2024-25] label: 'Number of antenatal care visits'; stored as float32; missing 42.3%
+      min 0  max 15  distinct 16
+      most frequent: 4 = 1181; 8 = 569; 3 = 529; 5 = 443; 6 = 347; 7 = 334; 0 = 184; 2 = 149;  highest values: 15 (n=2), 14 (n=1), 13 (n=1), 12 (n=3), 11 (n=4)
+====================================================================================================
+anc_timing
+  [2019-20] label: 'Timing of first antenatal care visit'; stored as float32; missing 23.8%
+      min 0  max 9  distinct 10
+      values: 3.0 = 1304; 4.0 = 507; 2.0 = 331; 5.0 = 281; 6.0 = 212; 7.0 = 113; 1.0 = 95; 8.0 = 49; 9.0 = 6; 0.0 = 6
+  [2024-25] label: 'Timing of first antenatal care visit'; stored as float32; missing 45.0%
+      min 1  max 9  distinct 9
+      values: 3.0 = 1313; 2.0 = 864; 1.0 = 517; 4.0 = 489; 5.0 = 266; 6.0 = 130; 7.0 = 74; 8.0 = 23; 9.0 = 16
+====================================================================================================
+delivery_facility
+  [2019-20] label: 'Delivery in health facility'; stored as float64; missing 0.2%
+      min 0  max 1  distinct 2
+      values: Facility = 3548; Home/other = 252
+  [2024-25] label: 'Delivery in health facility'; stored as float64; missing 38.7%
+      min 0  max 1  distinct 2
+      values: Facility = 4034; Home/other = 80
+====================================================================================================
+deworming
+  [2019-20] label: 'Received deworming medication'; stored as float64; missing 22.3%
+      min 0  max 1  distinct 2
+      values: No = 1653; Yes = 1308
+  [2024-25] label: 'Received deworming medication'; stored as float64; missing 42.5%
+      min 0  max 1  distinct 2
+      values: No = 2295; Yes = 1563
+====================================================================================================
+v190
+  [2019-20] label: 'wealth index combined'; stored as int8; missing 0.0%
+      min 1  max 5  distinct 5
+      values: poorest = 916; poorer = 780; middle = 715; richer = 705; richest = 693
+  [2024-25] label: 'wealth index combined'; stored as int8; missing 0.0%
+      min 1  max 5  distinct 5
+      values: poorest = 1500; poorer = 1324; richest = 1302; middle = 1296; richer = 1293
+====================================================================================================
+v025
+  [2019-20] label: 'type of place of residence'; stored as int8; missing 0.0%
+      min 1  max 2  distinct 2
+      values: rural = 3021; urban = 788
+  [2024-25] label: 'type of place of residence'; stored as int8; missing 0.0%
+      min 1  max 2  distinct 2
+      values: rural = 4375; urban = 2340
+====================================================================================================
+v024
+  [2019-20] label: 'region'; stored as int8; missing 0.0%
+      min 1  max 5  distinct 5
+      values: west = 975; east = 918; south = 877; north = 610; kigali = 429
+  [2024-25] label: 'region'; stored as int8; missing 0.0%
+      min 1  max 5  distinct 5
+      values: eastern province = 1768; western province = 1642; southern province = 1595; northern province = 1002; city of kigali = 708
+====================================================================================================
+water_source_grp
+  [2019-20] label: 'Drinking water source type'; stored as float64; missing 1.3%
+      min 1  max 2  distinct 2
+      values: Improved = 2961; Unimproved = 797
+  [2024-25] label: 'Drinking water source type'; stored as float64; missing 0.9%
+      min 1  max 2  distinct 2
+      values: Improved = 5473; Unimproved = 1183
+====================================================================================================
+water_time
+  [2019-20] label: 'Time to obtain drinking water (minutes)'; stored as float32; missing 1.4%
+      min 0  max 360  distinct 45
+      most frequent: 0 = 605; 30 = 557; 60 = 556; 10 = 397; 20 = 341; 40 = 320; 15 = 250; 120 = 132;  highest values: 360 (n=1), 240 (n=6), 200 (n=1), 180 (n=12), 150 (n=10)
+  [2024-25] label: 'Time to obtain drinking water (minutes)'; stored as float32; missing 0.9%
+      min 0  max 400  distinct 41
+      most frequent: 0 = 1485; 60 = 1129; 30 = 990; 10 = 656; 20 = 593; 15 = 388; 40 = 336; 120 = 250;  highest values: 400 (n=1), 310 (n=2), 300 (n=2), 240 (n=10), 210 (n=1)
+====================================================================================================
+toilet_grp
+  [2019-20] label: 'Sanitation facility'; stored as float64; missing 1.3%
+      min 1  max 3  distinct 3
+      values: Improved = 2645; Unimproved = 1016; No facility = 98
+  [2024-25] label: 'Sanitation facility'; stored as float64; missing 0.9%
+      min 1  max 3  distinct 3
+      values: Improved = 5699; Unimproved = 813; No facility = 144
+====================================================================================================
+shared_toilet
+  [2019-20] label: 'Household toilet shared'; stored as float64; missing 1.3%
+      min 0  max 1  distinct 2
+      values: Not shared = 3098; Shared = 661
+  [2024-25] label: 'Household toilet shared'; stored as float64; missing 0.9%
+      min 0  max 1  distinct 2
+      values: Not shared = 5321; Shared = 1335
+====================================================================================================
+v481
+  [2019-20] label: 'covered by health insurance'; stored as int8; missing 0.0%
+      min 0  max 1  distinct 2
+      values: yes = 3074; no = 735
+  [2024-25] label: 'covered by health insurance'; stored as int8; missing 0.0%
+      min 0  max 1  distinct 2
+      values: yes = 5879; no = 836
+====================================================================================================
+distance_problem
+  [2019-20] label: 'Distance to health facility is a big problem'; stored as int8; missing 0.0%
+      min 0  max 1  distinct 2
+      values: Not a big problem = 2903; Big problem = 906
+  [2024-25] label: 'Distance to health facility is a big problem'; stored as int8; missing 0.0%
+      min 0  max 1  distinct 2
+      values: Not a big problem = 4625; Big problem = 2090
+====================================================================================================
+v012
+  [2019-20] label: "respondent's current age"; stored as int8; missing 0.0%
+      min 15  max 49  distinct 35
+      most frequent: 31 = 238; 32 = 214; 35 = 211; 33 = 207; 30 = 196; 36 = 189; 29 = 176; 25 = 175;  highest values: 49 (n=8), 48 (n=12), 47 (n=16), 46 (n=25), 45 (n=35)
+  [2024-25] label: "respondent's current age"; stored as int8; missing 0.0%
+      min 15  max 49  distinct 35
+      most frequent: 29 = 378; 25 = 343; 31 = 322; 35 = 321; 28 = 313; 33 = 305; 30 = 296; 34 = 296;  highest values: 49 (n=10), 48 (n=28), 47 (n=36), 46 (n=61), 45 (n=68)
+====================================================================================================
+v136
+  [2019-20] label: 'number of household members (listed)'; stored as int8; missing 0.0%
+      min 2  max 16  distinct 15
+      most frequent: 5 = 821; 4 = 819; 6 = 696; 3 = 495; 7 = 429; 8 = 249; 9 = 136; 2 = 62;  highest values: 16 (n=5), 15 (n=1), 14 (n=5), 13 (n=1), 12 (n=10)
+  [2024-25] label: 'number of household members (listed)'; stored as int8; missing 0.0%
+      min 2  max 14  distinct 13
+      most frequent: 4 = 1615; 5 = 1363; 3 = 1285; 6 = 1048; 7 = 658; 8 = 329; 9 = 165; 2 = 128;  highest values: 14 (n=10), 13 (n=3), 12 (n=7), 11 (n=24), 10 (n=80)
+====================================================================================================
+v137
+  [2019-20] label: 'number of children 5 and under in household (de jure)'; stored as int8; missing 0.0%
+      min 0  max 6  distinct 7
+      values: 1 = 1712; 2 = 1671; 3 = 346; 0 = 35; 4 = 28; 5 = 12; 6 = 5
+  [2024-25] label: 'number of children 5 and under in household (de jure)'; stored as int8; missing 0.0%
+      min 0  max 5  distinct 6
+      values: 1 = 3978; 2 = 2331; 3 = 322; 4 = 43; 0 = 37; 5 = 4
+====================================================================================================
+v404
+  [2019-20] label: 'currently breastfeeding'; stored as int8; missing 0.0%
+      min 0  max 1  distinct 2
+      values: yes = 2479; no = 1330
+  [2024-25] label: 'currently breastfeeding'; stored as int8; missing 0.0%
+      min 0  max 1  distinct 2
+      values: yes = 3814; no = 2901
+====================================================================================================
+iron_supp
+  [2019-20] label: 'Received iron supplementation'; stored as float64; missing 22.2%
+      min 0  max 1  distinct 2
+      values: Yes = 2398; No = 566
+  [2024-25] label: 'Received iron supplementation'; stored as float64; missing 42.2%
+      min 0  max 1  distinct 2
+      values: Yes = 3591; No = 289
+====================================================================================================
+m17
+  [2019-20] label: 'delivery by caesarean section'; stored as int8; missing 0.0%
+      min 0  max 1  distinct 2
+      values: no = 3203; yes = 606
+  [2024-25] label: 'delivery by caesarean section'; stored as float64; missing 38.7%
+      min 0  max 1  distinct 2
+      values: no = 3120; yes = 994
+====================================================================================================
+birth_size
+  [2019-20] label: 'Reported size at birth'; stored as float64; missing 0.6%
+      min 1  max 5  distinct 5
+      values: 3.0 = 1986; 2.0 = 936; 4.0 = 566; 1.0 = 212; 5.0 = 88
+  [2024-25] label: 'Reported size at birth'; stored as float64; missing 38.9%
+      min 1  max 5  distinct 5
+      values: 3.0 = 1862; 2.0 = 1278; 4.0 = 605; 1.0 = 208; 5.0 = 148

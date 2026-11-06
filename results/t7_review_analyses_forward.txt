@@ -1,0 +1,120 @@
+t7 review analyses | forward: train 2019-20 (n=3809, stunted 0.334) -> test 2024-25 (n=6715, stunted 0.266)
+Settings: trials main/unweighted/within/shap = 100/40/30/40; bootstraps 1000; recal repeats 300
+
+====================================================================================================
+PART A. CALIBRATION OFFSET INSIDE THE TRAINING SURVEY (pooled inner out-of-fold) VERSUS THE TEST SURVEY
+====================================================================================================
+Class weighting alone is expected to give a calibration-in-the-large (CITL) near logit(prevalence): training -0.69, test -1.01.
+              Model  Train_mean_pred  Train_obs  Train_CITL  Train_slope  Test_mean_pred  Test_obs  Test_CITL  Test_slope  Shift_in_CITL
+Logistic Regression            0.460      0.334      -0.677        0.886           0.270     0.266     -0.022       0.427          0.654
+      Decision Tree            0.448      0.334      -0.649        0.172           0.435     0.266     -0.943       0.101         -0.294
+      Random Forest            0.456      0.334      -0.580        1.382           0.426     0.266     -0.794       1.183         -0.215
+  Gradient Boosting            0.456      0.334      -0.631        1.042           0.433     0.266     -0.862       0.992         -0.231
+            XGBoost            0.453      0.334      -0.606        1.091           0.423     0.266     -0.816       0.991         -0.210
+           LightGBM            0.452      0.334      -0.616        1.026           0.416     0.266     -0.795       0.925         -0.178
+           CatBoost            0.448      0.334      -0.595        1.028           0.412     0.266     -0.769       0.964         -0.174
+Reading: if Test_CITL is close to Train_CITL (Shift_in_CITL near 0 after allowing for the prevalence difference), the overestimate comes mostly from class weighting, not from a change between surveys.
+Expected CITL change from the prevalence difference alone: -0.32
+
+====================================================================================================
+PART B. MODELS TRAINED WITHOUT CLASS WEIGHTS (trained on the training survey only)
+====================================================================================================
+              Model   Training  Test_AUC  Test_mean_pred  Test_obs  Test_CITL  Test_slope  Test_Brier  Test_ECE  Train_CITL
+           CatBoost   Weighted     0.724           0.412     0.266     -0.769       0.964       0.195     0.145      -0.595
+           CatBoost Unweighted     0.727           0.300     0.266     -0.189       1.034       0.173     0.034       0.014
+            XGBoost   Weighted     0.720           0.423     0.266     -0.816       0.991       0.200     0.157      -0.606
+            XGBoost Unweighted     0.722           0.298     0.266     -0.176       1.028       0.174     0.032       0.018
+Logistic Regression   Weighted     0.657           0.270     0.266     -0.022       0.427       0.197     0.110      -0.677
+Logistic Regression Unweighted     0.682           0.197     0.266      0.488       0.577       0.188     0.085       0.013
+Reading: unweighted models should show Test_CITL near 0 if class weighting caused the overestimate; any remaining offset is a real change between surveys (or tuning noise). Brier and ECE compare calibration directly.
+
+====================================================================================================
+PART C. PAIRED CLUSTER-BOOTSTRAP AUC DIFFERENCES IN THE TEST SURVEY (1000 resamples)
+====================================================================================================
+Difference = AUC(CatBoost) minus AUC(other model). An interval that contains 0 means the two models cannot be told apart.
+        Other_model  AUC_CatBoost  AUC_other  Difference  CI_low  CI_high Interval_contains_0
+Logistic Regression         0.724      0.657       0.068   0.054    0.083                  no
+      Decision Tree         0.724      0.658       0.066   0.054    0.078                  no
+      Random Forest         0.724      0.715       0.009   0.005    0.013                  no
+  Gradient Boosting         0.724      0.722       0.002  -0.001    0.005                 yes
+            XGBoost         0.724      0.720       0.005   0.002    0.007                  no
+           LightGBM         0.724      0.720       0.005   0.002    0.008                  no
+
+====================================================================================================
+PART D. TRANSPORTED MODEL VERSUS MODEL TRAINED WITHIN THE TEST SURVEY (2024-25)
+====================================================================================================
+Within-survey = 5-fold cluster-grouped cross-validation inside the test survey, tuned on each outer-training part (30 trials, 4 inner folds).
+Difference = AUC(transported) minus AUC(within-survey), on the same children, paired cluster bootstrap. Positive = transported model did better.
+              Model  AUC_transported  AUC_within_survey  Difference  CI_low  CI_high Interval_contains_0
+           CatBoost            0.724              0.726      -0.002  -0.008    0.005                 yes
+            XGBoost            0.720              0.726      -0.007  -0.014    0.001                 yes
+Logistic Regression            0.657              0.719      -0.062  -0.076   -0.050                  no
+
+====================================================================================================
+PART E. RECALIBRATION WITH A SMALL LABELLED SAMPLE FROM THE NEW SURVEY (300 random splits of clusters)
+====================================================================================================
+For each fraction, that share of test-survey clusters is used to fit the recalibration; the remaining clusters are the evaluation set. Values are means over splits (2.5th-97.5th percentile for ECE).
+              Model  Fraction_clusters             Version  Brier   ECE  ECE_lo  ECE_hi   CITL
+           CatBoost               0.05                 Raw  0.195 0.145   0.143   0.148 -0.769
+           CatBoost               0.05      Intercept only  0.173 0.024   0.011   0.059  0.004
+           CatBoost               0.05 Intercept and slope  0.173 0.030   0.012   0.061  0.005
+           CatBoost               0.10                 Raw  0.195 0.145   0.142   0.149 -0.768
+           CatBoost               0.10      Intercept only  0.173 0.020   0.010   0.041  0.010
+           CatBoost               0.10 Intercept and slope  0.173 0.023   0.011   0.045  0.009
+           CatBoost               0.25                 Raw  0.195 0.145   0.138   0.152 -0.768
+           CatBoost               0.25      Intercept only  0.172 0.017   0.010   0.031  0.003
+           CatBoost               0.25 Intercept and slope  0.172 0.019   0.010   0.032  0.003
+           CatBoost               0.50                 Raw  0.195 0.145   0.133   0.155 -0.766
+           CatBoost               0.50      Intercept only  0.172 0.019   0.010   0.031  0.007
+           CatBoost               0.50 Intercept and slope  0.172 0.020   0.011   0.033  0.006
+            XGBoost               0.05                 Raw  0.200 0.157   0.154   0.160 -0.816
+            XGBoost               0.05      Intercept only  0.174 0.025   0.012   0.057  0.004
+            XGBoost               0.05 Intercept and slope  0.174 0.030   0.013   0.061  0.005
+            XGBoost               0.10                 Raw  0.200 0.157   0.153   0.161 -0.815
+            XGBoost               0.10      Intercept only  0.173 0.020   0.011   0.043  0.010
+            XGBoost               0.10 Intercept and slope  0.174 0.024   0.012   0.044  0.010
+            XGBoost               0.25                 Raw  0.199 0.157   0.150   0.164 -0.815
+            XGBoost               0.25      Intercept only  0.173 0.018   0.011   0.031  0.003
+            XGBoost               0.25 Intercept and slope  0.173 0.020   0.011   0.032  0.003
+            XGBoost               0.50                 Raw  0.199 0.156   0.144   0.167 -0.813
+            XGBoost               0.50      Intercept only  0.173 0.020   0.011   0.032  0.007
+            XGBoost               0.50 Intercept and slope  0.173 0.020   0.012   0.033  0.007
+Logistic Regression               0.05                 Raw  0.197 0.110   0.107   0.113 -0.022
+Logistic Regression               0.05      Intercept only  0.198 0.110   0.099   0.129  0.003
+Logistic Regression               0.05 Intercept and slope  0.184 0.044   0.033   0.069  0.002
+Logistic Regression               0.10                 Raw  0.197 0.110   0.106   0.115 -0.021
+Logistic Regression               0.10      Intercept only  0.197 0.110   0.101   0.121  0.012
+Logistic Regression               0.10 Intercept and slope  0.184 0.040   0.033   0.054  0.009
+Logistic Regression               0.25                 Raw  0.197 0.110   0.104   0.117 -0.022
+Logistic Regression               0.25      Intercept only  0.197 0.109   0.100   0.119  0.003
+Logistic Regression               0.25 Intercept and slope  0.183 0.038   0.031   0.049  0.002
+Logistic Regression               0.50                 Raw  0.197 0.110   0.100   0.121 -0.019
+Logistic Regression               0.50      Intercept only  0.197 0.110   0.099   0.122  0.007
+Logistic Regression               0.50 Intercept and slope  0.183 0.039   0.030   0.049  0.004
+Reading: find the smallest fraction at which ECE and Brier for the recalibrated versions are close to the full-sample values in Table 3 of the manuscript.
+
+====================================================================================================
+PART F. SHAP OF XGBOOST TRAINED SEPARATELY ON EACH SURVEY, EXPLAINED IN THE SAME SURVEY
+====================================================================================================
+Model A = trained on 2019-20; model B = trained on 2024-25; both explained on 2024-25 children (up to 2,000, each with its own preprocessing rules).
+Spearman correlation of mean |SHAP| over 54 encoded features: 0.751
+Overlap of the top 5 features: 5/5; top 10: 9/10
+      Feature  SHAP_A  Rank_A  SHAP_B  Rank_B
+mother_height   0.253     1.0   0.160     3.0
+ v190_richest   0.240     2.0   0.210     2.0
+          hw1   0.224     3.0   0.122     4.0
+ birth_weight   0.183     4.0   0.250     1.0
+      b4_male   0.159     5.0   0.114     5.0
+    bf_months   0.113     6.0   0.096     8.0
+ v190_poorest   0.110     7.0   0.102     6.0
+   water_time   0.096     8.0   0.087     9.0
+         bord   0.076     9.0   0.035    15.0
+    v024_west   0.069    10.0   0.097     7.0
+   anc_visits   0.048    11.0   0.021    21.0
+   v024_north   0.045    12.0   0.077    10.0
+   mother_bmi   0.042    13.0   0.036    14.0
+   v025_urban   0.041    14.0   0.004    37.0
+         v137   0.035    15.0   0.028    18.0
+Reading: a high correlation means models trained separately on each survey rely on the same features; this goes beyond the earlier check that explained ONE model in both surveys.
+
+DONE. Aggregate numbers only; safe to share.

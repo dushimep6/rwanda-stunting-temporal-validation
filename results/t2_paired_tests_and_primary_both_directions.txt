@@ -1,0 +1,414 @@
+Train rwanda_stunting_clean_2020_v4.dta: n=3809, stunted=1272 (0.334)
+Test  rwanda_stunting_clean_2025_b_v4.dta: n=6715, stunted=1788 (0.266)
+  b4: ['female', 'male']
+  b0: ['1st of multiple', '2nd of multiple', 'single birth']
+  first_birth: ['0', '1']
+  v106: ['higher', 'no education', 'primary', 'secondary']
+  delivery_facility: ['facility', 'home/other']
+  v190: ['middle', 'poorer', 'poorest', 'richer', 'richest']
+  v025: ['rural', 'urban']
+  v024: ['east', 'kigali', 'north', 'south', 'west']
+  water_source_grp: ['improved', 'unimproved']
+  toilet_grp: ['improved', 'no facility', 'unimproved']
+  shared_toilet: ['not shared', 'shared']
+  v481: ['no', 'yes']
+  distance_problem: ['big problem', 'not a big problem']
+  lbw: ['low birth weight', 'not low birth weight']
+  still_breastfeeding: ['currently breastfeeding', 'not currently breastfeeding']
+  deworming: ['no', 'yes']
+  v404: ['no', 'yes']
+  iron_supp: ['no', 'yes']
+  m17: ['no', 'yes']
+  birth_size: ['1.0', '2.0', '3.0', '4.0', '5.0']
+
+Test survey rwanda_stunting_clean_2025_b_v4.dta: n = 6715, stunted = 1788 (0.266); survey weights found
+
+Reproduction check (test-survey AUC) against the temporal run:
+  Logistic Regression  0.650  (temporal run 0.650)
+  Decision Tree        0.658  (temporal run 0.658)
+  Random Forest        0.715  (temporal run 0.715)
+  Gradient Boosting    0.722  (temporal run 0.722)
+  XGBoost              0.722  (temporal run 0.722)
+  LightGBM             0.720  (temporal run 0.720)
+  CatBoost             0.726  (temporal run 0.726)
+Bootstrap: clusters resampled within 60 strata (560 clusters).
+
+====================================================================================================
+PRIMARY PERFORMANCE IN THE TEST SURVEY (2024-25); 95% CIs from a stratified cluster bootstrap
+====================================================================================================
+              Model  threshold_from_train                    auc               accuracy                     f1              precision                 recall
+Logistic Regression                 0.416 0.650 [0.635 to 0.664] 0.694 [0.683 to 0.705] 0.410 [0.389 to 0.430] 0.421 [0.397 to 0.446] 0.399 [0.377 to 0.421]
+      Decision Tree                 0.469 0.658 [0.644 to 0.671] 0.590 [0.579 to 0.601] 0.469 [0.452 to 0.486] 0.358 [0.341 to 0.375] 0.681 [0.659 to 0.701]
+      Random Forest                 0.462 0.715 [0.702 to 0.728] 0.655 [0.643 to 0.666] 0.504 [0.485 to 0.521] 0.408 [0.389 to 0.427] 0.657 [0.632 to 0.680]
+  Gradient Boosting                 0.457 0.722 [0.708 to 0.734] 0.640 [0.629 to 0.652] 0.510 [0.492 to 0.528] 0.400 [0.382 to 0.418] 0.705 [0.682 to 0.726]
+            XGBoost                 0.457 0.722 [0.708 to 0.734] 0.635 [0.623 to 0.646] 0.512 [0.494 to 0.529] 0.397 [0.380 to 0.416] 0.719 [0.697 to 0.741]
+           LightGBM                 0.469 0.720 [0.707 to 0.733] 0.647 [0.636 to 0.659] 0.512 [0.493 to 0.530] 0.405 [0.388 to 0.424] 0.694 [0.671 to 0.716]
+           CatBoost                 0.489 0.726 [0.713 to 0.738] 0.667 [0.656 to 0.678] 0.504 [0.485 to 0.521] 0.417 [0.398 to 0.437] 0.635 [0.611 to 0.657]
+
+====================================================================================================
+SURVEY-WEIGHTED AUC IN THE TEST SURVEY (2024-25)
+====================================================================================================
+              Model  AUC_unweighted  AUC_weighted  AUC_weighted_lo  AUC_weighted_hi
+Logistic Regression           0.650         0.655            0.639            0.669
+      Decision Tree           0.658         0.662            0.648            0.677
+      Random Forest           0.715         0.720            0.706            0.733
+  Gradient Boosting           0.722         0.726            0.713            0.739
+            XGBoost           0.722         0.727            0.713            0.739
+           LightGBM           0.720         0.725            0.712            0.738
+           CatBoost           0.726         0.731            0.718            0.744
+
+====================================================================================================
+RECALIBRATION IN THE NEW SURVEY (2024-25); cross-fitted within the test survey
+====================================================================================================
+              Model                           Variant   AUC  Mean_predicted_risk  Calibration_intercept  Calibration_slope  Brier  ECE_10bins
+Logistic Regression Raw (trained on the other survey) 0.650                0.262                  0.027              0.390  0.200       0.117
+Logistic Regression           Intercept recalibration 0.650                0.266                 -0.000              0.389  0.200       0.119
+Logistic Regression               Platt recalibration 0.650                0.266                 -0.000              0.998  0.184       0.040
+      Decision Tree Raw (trained on the other survey) 0.658                0.435                 -0.941              0.102  0.230       0.197
+      Decision Tree           Intercept recalibration 0.657                0.266                 -0.000              0.112  0.187       0.056
+      Decision Tree               Platt recalibration 0.658                0.266                  0.000              0.986  0.189       0.066
+      Random Forest Raw (trained on the other survey) 0.715                0.415                 -0.749              1.123  0.197       0.149
+      Random Forest           Intercept recalibration 0.715                0.266                 -0.000              1.122  0.174       0.014
+      Random Forest               Platt recalibration 0.715                0.266                 -0.000              0.998  0.174       0.010
+  Gradient Boosting Raw (trained on the other survey) 0.722                0.426                 -0.832              0.977  0.200       0.159
+  Gradient Boosting           Intercept recalibration 0.722                0.266                 -0.000              0.976  0.173       0.018
+  Gradient Boosting               Platt recalibration 0.722                0.266                 -0.000              0.998  0.173       0.018
+            XGBoost Raw (trained on the other survey) 0.722                0.433                 -0.868              0.971  0.203       0.167
+            XGBoost           Intercept recalibration 0.722                0.266                 -0.000              0.969  0.173       0.012
+            XGBoost               Platt recalibration 0.722                0.266                 -0.000              0.998  0.173       0.012
+           LightGBM Raw (trained on the other survey) 0.720                0.428                 -0.837              0.998  0.201       0.162
+           LightGBM           Intercept recalibration 0.720                0.266                 -0.000              0.997  0.173       0.010
+           LightGBM               Platt recalibration 0.720                0.266                  0.000              0.998  0.173       0.010
+           CatBoost Raw (trained on the other survey) 0.726                0.426                 -0.832              0.996  0.199       0.159
+           CatBoost           Intercept recalibration 0.726                0.266                 -0.000              0.995  0.172       0.014
+           CatBoost               Platt recalibration 0.726                0.266                 -0.000              0.998  0.172       0.014
+
+Observed prevalence in the test survey: 0.266
+
+====================================================================================================
+DECISION CURVE ANALYSIS in the test survey (2024-25), Platt-recalibrated risks, survey-weighted
+====================================================================================================
+Net benefit per child; 'advantage' = model minus treating every child (95% cluster-bootstrap CI). Treating nobody = 0.
+
+CatBoost:
+ Threshold_probability  Net_benefit  Net_benefit_treat_all              Advantage
+                  0.05       0.2274                 0.2262 +0.001 [+0.000,+0.002]
+                  0.10       0.1938                 0.1833 +0.011 [+0.008,+0.013]
+                  0.15       0.1608                 0.1352 +0.026 [+0.021,+0.029]
+                  0.20       0.1274                 0.0812 +0.046 [+0.040,+0.052]
+                  0.25       0.0996                 0.0199 +0.080 [+0.072,+0.087]
+                  0.30       0.0688                -0.0501 +0.119 [+0.107,+0.130]
+                  0.35       0.0477                -0.1309 +0.179 [+0.165,+0.193]
+                  0.40       0.0335                -0.2251 +0.259 [+0.242,+0.276]
+                  0.45       0.0190                -0.3365 +0.355 [+0.336,+0.376]
+                  0.50       0.0068                -0.4701 +0.477 [+0.454,+0.500]
+                  0.55       0.0048                -0.6335 +0.638 [+0.612,+0.665]
+                  0.60      -0.0002                -0.8377 +0.837 [+0.808,+0.868]
+
+XGBoost:
+ Threshold_probability  Net_benefit  Net_benefit_treat_all              Advantage
+                  0.05       0.2271                 0.2262 +0.001 [+0.000,+0.002]
+                  0.10       0.1924                 0.1833 +0.009 [+0.007,+0.011]
+                  0.15       0.1592                 0.1352 +0.024 [+0.020,+0.028]
+                  0.20       0.1246                 0.0812 +0.043 [+0.037,+0.049]
+                  0.25       0.0974                 0.0199 +0.077 [+0.069,+0.086]
+                  0.30       0.0669                -0.0501 +0.117 [+0.106,+0.128]
+                  0.35       0.0465                -0.1309 +0.177 [+0.164,+0.191]
+                  0.40       0.0333                -0.2251 +0.258 [+0.242,+0.276]
+                  0.45       0.0202                -0.3365 +0.357 [+0.338,+0.377]
+                  0.50       0.0104                -0.4701 +0.481 [+0.458,+0.504]
+                  0.55       0.0039                -0.6335 +0.637 [+0.611,+0.665]
+                  0.60      -0.0016                -0.8377 +0.836 [+0.806,+0.867]
+
+Logistic Regression:
+ Threshold_probability  Net_benefit  Net_benefit_treat_all              Advantage
+                  0.05       0.2262                 0.2262 +0.000 [-0.000,+0.000]
+                  0.10       0.1850                 0.1833 +0.002 [+0.001,+0.002]
+                  0.15       0.1464                 0.1352 +0.011 [+0.008,+0.014]
+                  0.20       0.0994                 0.0812 +0.018 [+0.011,+0.025]
+                  0.25       0.0572                 0.0199 +0.037 [+0.027,+0.048]
+                  0.30       0.0389                -0.0501 +0.089 [+0.076,+0.102]
+                  0.35       0.0289                -0.1309 +0.160 [+0.144,+0.175]
+                  0.40       0.0214                -0.2251 +0.246 [+0.229,+0.264]
+                  0.45       0.0114                -0.3365 +0.348 [+0.327,+0.370]
+                  0.50       0.0062                -0.4701 +0.476 [+0.453,+0.501]
+                  0.55       0.0037                -0.6335 +0.637 [+0.609,+0.665]
+                  0.60       0.0010                -0.8377 +0.839 [+0.807,+0.870]
+
+Range of threshold probabilities over which the model clearly beats treating everybody (lower CI above 0):
+  Logistic Regression  0.10 to 0.60
+  Decision Tree        0.15 to 0.60
+  Random Forest        0.10 to 0.60
+  Gradient Boosting    0.10 to 0.60
+  XGBoost              0.05 to 0.60
+  LightGBM             0.05 to 0.60
+  CatBoost             0.05 to 0.60
+
+====================================================================================================
+AUC BY SUBGROUP IN THE TEST SURVEY (2024-25); CatBoost shown
+====================================================================================================
+              Variable   Level    N  N_stunted   AUC  AUC_lo  AUC_hi
+       Province (v024)  kigali  708        107 0.791   0.751   0.831
+       Province (v024)   south 1595        393 0.716   0.687   0.744
+       Province (v024)   north 1002        321 0.671   0.638   0.703
+       Province (v024)    east 1768        439 0.734   0.708   0.760
+       Province (v024)    west 1642        528 0.699   0.672   0.725
+      Residence (v025)   rural 4375       1304 0.703   0.686   0.719
+      Residence (v025)   urban 2340        484 0.775   0.748   0.800
+Wealth quintile (v190) poorest 1500        586 0.682   0.656   0.708
+Wealth quintile (v190)  poorer 1324        427 0.648   0.616   0.679
+Wealth quintile (v190)  middle 1296        374 0.702   0.672   0.731
+Wealth quintile (v190) richest 1302        131 0.747   0.700   0.793
+Wealth quintile (v190)  richer 1293        270 0.646   0.606   0.684
+        Child sex (b4)    male 3353        976 0.735   0.718   0.752
+        Child sex (b4)  female 3362        812 0.721   0.701   0.739
+    Child age (months)   36-47 1379        375 0.712   0.685   0.738
+    Child age (months)   24-35 1324        398 0.711   0.680   0.742
+    Child age (months)   48-59 1223        302 0.723   0.689   0.756
+    Child age (months)     0-5  709        120 0.814   0.770   0.854
+    Child age (months)    6-11  730        143 0.709   0.665   0.751
+    Child age (months)   12-23 1350        450 0.727   0.697   0.754
+
+====================================================================================================
+PAIRED AUC DIFFERENCES IN THE TEST SURVEY (2024-25); 95% interval and Holm-adjusted p
+====================================================================================================
+            Model_A           Model_B  AUC_A  AUC_B  Difference_A_minus_B  CI_low  CI_high  p_bootstrap  p_Holm
+Logistic Regression     Random Forest 0.6501 0.7152               -0.0651 -0.0793  -0.0497        0.001   0.021
+Logistic Regression Gradient Boosting 0.6501 0.7217               -0.0716 -0.0848  -0.0574        0.001   0.021
+Logistic Regression           XGBoost 0.6501 0.7219               -0.0718 -0.0854  -0.0577        0.001   0.021
+Logistic Regression          LightGBM 0.6501 0.7203               -0.0702 -0.0834  -0.0563        0.001   0.021
+      Decision Tree     Random Forest 0.6577 0.7152               -0.0575 -0.0682  -0.0479        0.001   0.021
+Logistic Regression          CatBoost 0.6501 0.7261               -0.0760 -0.0891  -0.0622        0.001   0.021
+      Decision Tree Gradient Boosting 0.6577 0.7217               -0.0640 -0.0752  -0.0535        0.001   0.021
+      Decision Tree           XGBoost 0.6577 0.7219               -0.0642 -0.0755  -0.0536        0.001   0.021
+      Decision Tree          CatBoost 0.6577 0.7261               -0.0684 -0.0798  -0.0577        0.001   0.021
+      Decision Tree          LightGBM 0.6577 0.7203               -0.0626 -0.0730  -0.0527        0.001   0.021
+      Random Forest          CatBoost 0.7152 0.7261               -0.0109 -0.0153  -0.0063        0.001   0.021
+  Gradient Boosting          CatBoost 0.7217 0.7261               -0.0044 -0.0073  -0.0016        0.001   0.021
+            XGBoost          CatBoost 0.7219 0.7261               -0.0042 -0.0071  -0.0012        0.001   0.021
+           LightGBM          CatBoost 0.7203 0.7261               -0.0058 -0.0089  -0.0028        0.001   0.021
+      Random Forest           XGBoost 0.7152 0.7219               -0.0067 -0.0110  -0.0022        0.004   0.028
+      Random Forest Gradient Boosting 0.7152 0.7217               -0.0065 -0.0106  -0.0018        0.004   0.028
+      Random Forest          LightGBM 0.7152 0.7203               -0.0051 -0.0089  -0.0011        0.016   0.080
+            XGBoost          LightGBM 0.7219 0.7203                0.0016 -0.0001   0.0035        0.076   0.304
+  Gradient Boosting          LightGBM 0.7217 0.7203                0.0013 -0.0003   0.0030        0.116   0.348
+Logistic Regression     Decision Tree 0.6501 0.6577               -0.0076 -0.0246   0.0102        0.446   0.892
+  Gradient Boosting           XGBoost 0.7217 0.7219               -0.0002 -0.0019   0.0014        0.778   0.892
+
+======================================================================
+TEMPORAL ADD-ON COMPLETE
+======================================================================
+Files written (aggregate tables only):
+   temporal_addon_primary_performance_train2020_test2025_v7_addons.csv
+   temporal_addon_paired_auc_train2020_test2025_v7_addons.csv
+   temporal_addon_weighted_auc_train2020_test2025_v7_addons.csv
+   temporal_addon_recalibration_train2020_test2025_v7_addons.csv
+   temporal_addon_decision_curve_train2020_test2025_v7_addons.csv
+   temporal_addon_subgroup_auc_train2020_test2025_v7_addons.csv
+Train rwanda_stunting_clean_2025_b_v4.dta: n=6715, stunted=1788 (0.266)
+Test  rwanda_stunting_clean_2020_v4.dta: n=3809, stunted=1272 (0.334)
+  b4: ['female', 'male']
+  b0: ['1st of multiple', '2nd of multiple', 'single birth']
+  first_birth: ['0', '1']
+  v106: ['higher', 'no education', 'primary', 'secondary']
+  delivery_facility: ['facility', 'home/other']
+  v190: ['middle', 'poorer', 'poorest', 'richer', 'richest']
+  v025: ['rural', 'urban']
+  v024: ['east', 'kigali', 'north', 'south', 'west']
+  water_source_grp: ['improved', 'unimproved']
+  toilet_grp: ['improved', 'no facility', 'unimproved']
+  shared_toilet: ['not shared', 'shared']
+  v481: ['no', 'yes']
+  distance_problem: ['big problem', 'not a big problem']
+  lbw: ['low birth weight', 'not low birth weight']
+  still_breastfeeding: ['currently breastfeeding', 'not currently breastfeeding']
+  deworming: ['no', 'yes']
+  v404: ['no', 'yes']
+  iron_supp: ['no', 'yes']
+  m17: ['no', 'yes']
+  birth_size: ['1.0', '2.0', '3.0', '4.0', '5.0']
+
+Test survey rwanda_stunting_clean_2020_v4.dta: n = 3809, stunted = 1272 (0.334); survey weights found
+
+Reproduction check (test-survey AUC) against the temporal run:
+  Logistic Regression  0.756  (temporal run 0.756)
+  Decision Tree        0.696  (temporal run 0.696)
+  Random Forest        0.759  (temporal run 0.759)
+  Gradient Boosting    0.766  (temporal run 0.766)
+  XGBoost              0.762  (temporal run 0.762)
+  LightGBM             0.766  (temporal run 0.766)
+  CatBoost             0.767  (temporal run 0.767)
+Bootstrap: clusters resampled within 60 strata (500 clusters).
+
+====================================================================================================
+PRIMARY PERFORMANCE IN THE TEST SURVEY (2019-20); 95% CIs from a stratified cluster bootstrap
+====================================================================================================
+              Model  threshold_from_train                    auc               accuracy                     f1              precision                 recall
+Logistic Regression                 0.470 0.756 [0.741 to 0.771] 0.650 [0.637 to 0.664] 0.605 [0.584 to 0.627] 0.486 [0.464 to 0.509] 0.803 [0.781 to 0.824]
+      Decision Tree                 0.479 0.696 [0.680 to 0.712] 0.620 [0.605 to 0.635] 0.563 [0.541 to 0.585] 0.457 [0.434 to 0.480] 0.733 [0.707 to 0.758]
+      Random Forest                 0.449 0.759 [0.746 to 0.774] 0.631 [0.615 to 0.646] 0.605 [0.583 to 0.626] 0.471 [0.449 to 0.493] 0.844 [0.822 to 0.865]
+  Gradient Boosting                 0.467 0.766 [0.753 to 0.780] 0.660 [0.645 to 0.676] 0.615 [0.595 to 0.636] 0.495 [0.473 to 0.517] 0.813 [0.790 to 0.835]
+            XGBoost                 0.446 0.762 [0.748 to 0.777] 0.653 [0.638 to 0.668] 0.611 [0.591 to 0.634] 0.488 [0.467 to 0.511] 0.818 [0.795 to 0.839]
+           LightGBM                 0.496 0.766 [0.752 to 0.780] 0.671 [0.657 to 0.685] 0.612 [0.590 to 0.634] 0.505 [0.481 to 0.528] 0.778 [0.754 to 0.802]
+           CatBoost                 0.476 0.767 [0.753 to 0.782] 0.659 [0.645 to 0.675] 0.612 [0.590 to 0.635] 0.494 [0.471 to 0.519] 0.805 [0.782 to 0.828]
+
+====================================================================================================
+SURVEY-WEIGHTED AUC IN THE TEST SURVEY (2019-20)
+====================================================================================================
+              Model  AUC_unweighted  AUC_weighted  AUC_weighted_lo  AUC_weighted_hi
+Logistic Regression           0.756         0.755            0.738            0.771
+      Decision Tree           0.696         0.696            0.676            0.714
+      Random Forest           0.759         0.757            0.741            0.773
+  Gradient Boosting           0.766         0.764            0.748            0.780
+            XGBoost           0.762         0.762            0.745            0.778
+           LightGBM           0.766         0.764            0.748            0.780
+           CatBoost           0.767         0.766            0.750            0.782
+
+====================================================================================================
+RECALIBRATION IN THE NEW SURVEY (2019-20); cross-fitted within the test survey
+====================================================================================================
+              Model                           Variant   AUC  Mean_predicted_risk  Calibration_intercept  Calibration_slope  Brier  ECE_10bins
+Logistic Regression Raw (trained on the other survey) 0.756                0.493                 -0.835              0.929  0.211       0.159
+Logistic Regression           Intercept recalibration 0.755                0.334                 -0.000              0.925  0.184       0.018
+Logistic Regression               Platt recalibration 0.755                0.334                 -0.000              0.991  0.184       0.017
+      Decision Tree Raw (trained on the other survey) 0.696                0.481                 -0.737              0.707  0.224       0.148
+      Decision Tree           Intercept recalibration 0.696                0.334                 -0.000              0.712  0.200       0.033
+      Decision Tree               Platt recalibration 0.695                0.334                  0.000              0.989  0.199       0.024
+      Random Forest Raw (trained on the other survey) 0.759                0.479                 -0.667              1.646  0.207       0.145
+      Random Forest           Intercept recalibration 0.759                0.334                 -0.000              1.644  0.187       0.062
+      Random Forest               Platt recalibration 0.758                0.334                  0.000              0.994  0.183       0.012
+  Gradient Boosting Raw (trained on the other survey) 0.766                0.482                 -0.723              1.277  0.203       0.148
+  Gradient Boosting           Intercept recalibration 0.766                0.334                 -0.000              1.275  0.181       0.032
+  Gradient Boosting               Platt recalibration 0.766                0.334                  0.000              0.996  0.180       0.010
+            XGBoost Raw (trained on the other survey) 0.762                0.478                 -0.737              1.059  0.203       0.144
+            XGBoost           Intercept recalibration 0.762                0.334                 -0.000              1.057  0.182       0.021
+            XGBoost               Platt recalibration 0.762                0.334                  0.000              0.995  0.182       0.019
+           LightGBM Raw (trained on the other survey) 0.766                0.488                 -0.783              1.096  0.205       0.154
+           LightGBM           Intercept recalibration 0.766                0.334                 -0.000              1.094  0.180       0.024
+           LightGBM               Platt recalibration 0.766                0.334                  0.000              0.994  0.180       0.020
+           CatBoost Raw (trained on the other survey) 0.767                0.486                 -0.760              1.177  0.204       0.152
+           CatBoost           Intercept recalibration 0.767                0.334                 -0.000              1.174  0.180       0.028
+           CatBoost               Platt recalibration 0.767                0.334                  0.000              0.996  0.180       0.014
+
+Observed prevalence in the test survey: 0.334
+
+====================================================================================================
+DECISION CURVE ANALYSIS in the test survey (2019-20), Platt-recalibrated risks, survey-weighted
+====================================================================================================
+Net benefit per child; 'advantage' = model minus treating every child (95% cluster-bootstrap CI). Treating nobody = 0.
+
+CatBoost:
+ Threshold_probability  Net_benefit  Net_benefit_treat_all              Advantage
+                  0.05       0.2950                 0.2949 +0.000 [-0.002,+0.002]
+                  0.10       0.2630                 0.2558 +0.007 [+0.004,+0.010]
+                  0.15       0.2320                 0.2120 +0.020 [+0.015,+0.025]
+                  0.20       0.2033                 0.1627 +0.041 [+0.033,+0.048]
+                  0.25       0.1750                 0.1069 +0.068 [+0.059,+0.077]
+                  0.30       0.1458                 0.0431 +0.103 [+0.091,+0.115]
+                  0.35       0.1209                -0.0305 +0.151 [+0.139,+0.166]
+                  0.40       0.0964                -0.1164 +0.213 [+0.196,+0.231]
+                  0.45       0.0758                -0.2178 +0.294 [+0.272,+0.316]
+                  0.50       0.0588                -0.3396 +0.398 [+0.372,+0.425]
+                  0.55       0.0377                -0.4885 +0.526 [+0.494,+0.558]
+                  0.60       0.0246                -0.6745 +0.699 [+0.660,+0.738]
+
+XGBoost:
+ Threshold_probability  Net_benefit  Net_benefit_treat_all              Advantage
+                  0.05       0.2951                 0.2949 +0.000 [-0.002,+0.002]
+                  0.10       0.2626                 0.2558 +0.007 [+0.004,+0.010]
+                  0.15       0.2317                 0.2120 +0.020 [+0.014,+0.025]
+                  0.20       0.2011                 0.1627 +0.038 [+0.031,+0.046]
+                  0.25       0.1738                 0.1069 +0.067 [+0.057,+0.077]
+                  0.30       0.1459                 0.0431 +0.103 [+0.092,+0.114]
+                  0.35       0.1181                -0.0305 +0.149 [+0.135,+0.163]
+                  0.40       0.0944                -0.1164 +0.211 [+0.194,+0.230]
+                  0.45       0.0690                -0.2178 +0.287 [+0.264,+0.310]
+                  0.50       0.0570                -0.3396 +0.397 [+0.369,+0.423]
+                  0.55       0.0396                -0.4885 +0.528 [+0.495,+0.562]
+                  0.60       0.0230                -0.6745 +0.697 [+0.659,+0.737]
+
+Logistic Regression:
+ Threshold_probability  Net_benefit  Net_benefit_treat_all              Advantage
+                  0.05       0.2945                 0.2949 -0.000 [-0.002,+0.001]
+                  0.10       0.2622                 0.2558 +0.006 [+0.003,+0.009]
+                  0.15       0.2291                 0.2120 +0.017 [+0.012,+0.023]
+                  0.20       0.1985                 0.1627 +0.036 [+0.028,+0.043]
+                  0.25       0.1699                 0.1069 +0.063 [+0.054,+0.072]
+                  0.30       0.1455                 0.0431 +0.102 [+0.091,+0.114]
+                  0.35       0.1169                -0.0305 +0.147 [+0.133,+0.163]
+                  0.40       0.0885                -0.1164 +0.205 [+0.188,+0.223]
+                  0.45       0.0646                -0.2178 +0.282 [+0.260,+0.306]
+                  0.50       0.0445                -0.3396 +0.384 [+0.357,+0.412]
+                  0.55       0.0279                -0.4885 +0.516 [+0.484,+0.549]
+                  0.60       0.0158                -0.6745 +0.690 [+0.651,+0.730]
+
+Range of threshold probabilities over which the model clearly beats treating everybody (lower CI above 0):
+  Logistic Regression  0.10 to 0.60
+  Decision Tree        0.10 to 0.60
+  Random Forest        0.10 to 0.60
+  Gradient Boosting    0.10 to 0.60
+  XGBoost              0.10 to 0.60
+  LightGBM             0.10 to 0.60
+  CatBoost             0.10 to 0.60
+
+====================================================================================================
+AUC BY SUBGROUP IN THE TEST SURVEY (2019-20); CatBoost shown
+====================================================================================================
+              Variable   Level    N  N_stunted   AUC  AUC_lo  AUC_hi
+       Province (v024)  kigali  429         91 0.813   0.755   0.866
+       Province (v024)   south  877        280 0.734   0.702   0.766
+       Province (v024)   north  610        243 0.744   0.696   0.788
+       Province (v024)    east  918        273 0.745   0.709   0.781
+       Province (v024)    west  975        385 0.762   0.731   0.790
+      Residence (v025)   rural 3021       1113 0.747   0.729   0.765
+      Residence (v025)   urban  788        159 0.810   0.764   0.853
+Wealth quintile (v190)  richer  705        203 0.737   0.693   0.784
+Wealth quintile (v190) richest  693         73 0.696   0.637   0.749
+Wealth quintile (v190) poorest  916        440 0.732   0.699   0.765
+Wealth quintile (v190)  poorer  780        318 0.703   0.665   0.738
+Wealth quintile (v190)  middle  715        238 0.716   0.682   0.751
+        Child sex (b4)    male 1920        715 0.759   0.736   0.779
+        Child sex (b4)  female 1889        557 0.767   0.745   0.789
+    Child age (months)   36-47  731        277 0.715   0.676   0.757
+    Child age (months)    6-11  417         90 0.752   0.694   0.808
+    Child age (months)   48-59  719        233 0.782   0.742   0.820
+    Child age (months)   24-35  786        322 0.743   0.705   0.775
+    Child age (months)   12-23  782        285 0.761   0.727   0.794
+    Child age (months)     0-5  374         65 0.793   0.727   0.849
+
+====================================================================================================
+PAIRED AUC DIFFERENCES IN THE TEST SURVEY (2019-20); 95% interval and Holm-adjusted p
+====================================================================================================
+            Model_A           Model_B  AUC_A  AUC_B  Difference_A_minus_B  CI_low  CI_high  p_bootstrap  p_Holm
+Logistic Regression     Decision Tree 0.7559 0.6962                0.0596  0.0463   0.0735        0.001   0.021
+      Decision Tree Gradient Boosting 0.6962 0.7664               -0.0702 -0.0833  -0.0572        0.001   0.021
+      Decision Tree     Random Forest 0.6962 0.7590               -0.0627 -0.0756  -0.0509        0.001   0.021
+      Decision Tree           XGBoost 0.6962 0.7622               -0.0660 -0.0803  -0.0531        0.001   0.021
+      Random Forest          CatBoost 0.7590 0.7670               -0.0081 -0.0131  -0.0030        0.001   0.021
+      Decision Tree          CatBoost 0.6962 0.7670               -0.0708 -0.0846  -0.0577        0.001   0.021
+      Decision Tree          LightGBM 0.6962 0.7661               -0.0699 -0.0835  -0.0578        0.001   0.021
+Logistic Regression          LightGBM 0.7559 0.7661               -0.0102 -0.0168  -0.0034        0.002   0.028
+      Random Forest          LightGBM 0.7590 0.7661               -0.0072 -0.0121  -0.0019        0.004   0.052
+Logistic Regression          CatBoost 0.7559 0.7670               -0.0112 -0.0180  -0.0042        0.004   0.052
+Logistic Regression Gradient Boosting 0.7559 0.7664               -0.0105 -0.0179  -0.0033        0.006   0.066
+      Random Forest Gradient Boosting 0.7590 0.7664               -0.0074 -0.0124  -0.0024        0.006   0.066
+            XGBoost          CatBoost 0.7622 0.7670               -0.0048 -0.0095  -0.0004        0.034   0.306
+            XGBoost          LightGBM 0.7622 0.7661               -0.0039 -0.0077   0.0000        0.052   0.416
+  Gradient Boosting           XGBoost 0.7664 0.7622                0.0042 -0.0001   0.0086        0.062   0.434
+Logistic Regression           XGBoost 0.7559 0.7622               -0.0063 -0.0140   0.0014        0.108   0.648
+      Random Forest           XGBoost 0.7590 0.7622               -0.0033 -0.0089   0.0031        0.330   1.000
+Logistic Regression     Random Forest 0.7559 0.7590               -0.0031 -0.0109   0.0049        0.444   1.000
+           LightGBM          CatBoost 0.7661 0.7670               -0.0009 -0.0044   0.0026        0.596   1.000
+  Gradient Boosting          CatBoost 0.7664 0.7670               -0.0006 -0.0040   0.0029        0.698   1.000
+  Gradient Boosting          LightGBM 0.7664 0.7661                0.0003 -0.0033   0.0036        0.858   1.000
+
+======================================================================
+TEMPORAL ADD-ON COMPLETE
+======================================================================
+Files written (aggregate tables only):
+   temporal_addon_primary_performance_train2025_test2020_v7_addons.csv
+   temporal_addon_paired_auc_train2025_test2020_v7_addons.csv
+   temporal_addon_weighted_auc_train2025_test2020_v7_addons.csv
+   temporal_addon_recalibration_train2025_test2020_v7_addons.csv
+   temporal_addon_decision_curve_train2025_test2020_v7_addons.csv
+   temporal_addon_subgroup_auc_train2025_test2020_v7_addons.csv

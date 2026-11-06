@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper and this archive."
+title: "Code for temporal validation of child stunting prediction models across two Rwanda Demographic and Health Surveys"
+type: software
+authors:
+  - family-names: Dushimimana
+    given-names: Pasteur
+license: MIT
+version: "1.0.0"
+date-released: "2026-11-06"
+# After you upload to Zenodo, add the DOI here:
+# doi: "10.5281/zenodo.XXXXXXX"
+# repository-code: "https://github.com/YOUR-USER/rwanda-stunting-temporal-validation"

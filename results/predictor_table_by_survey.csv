@@ -1,0 +1,34 @@
+Predictor,Description,Type,Dropped in harmonised run,Missing % 2019-20,Summary 2019-20,Missing % 2024-25,Summary 2024-25
+b4,Child sex,category,,0.0,male 50.4%; female 49.6%,0.0,female 50.1%; male 49.9%
+bord,Birth order,number,,0.0,3.13 (2.00),0.0,2.79 (1.85)
+b0,Multiple birth,category,,0.0,single birth 97.3%; 1st of multiple 1.4%; 2nd of multiple 1.3%,0.0,single birth 97.2%; 1st of multiple 1.4%; 2nd of multiple 1.4%
+hw1,Child's age (months),number,,0.0,28.93 (17.18),0.0,28.69 (17.20)
+first_birth,First birth,category,,0.0,0 76.1%; 1 23.9%,0.0,0 69.5%; 1 30.5%
+lbw,Low birth weight,category,yes,5.1,not low birth weight 93.8%; low birth weight 6.2%,39.6,not low birth weight 92.0%; low birth weight 8.0%
+birth_weight,Birth weight,number,yes,5.1,3279.08 (641.51),39.6,3204.14 (601.14)
+bf_months,Months breastfed,number,,53.4,14.53 (9.71),55.0,12.87 (8.38)
+still_breastfeeding,Currently breastfeeding,category,yes,0.0,not currently breastfeeding 53.4%; currently breastfeeding 46.6%,38.7,currently breastfeeding 73.4%; not currently breastfeeding 26.6%
+v106,Mother's education,category,,0.0,primary 65.3%; secondary 18.2%; no education 11.9%; higher 4.6%,0.0,primary 59.7%; secondary 29.1%; no education 6.3%; higher 4.9%
+mother_bmi,Mother's BMI,number,yes,0.0,23.74 (4.05),50.5,24.47 (4.31)
+mother_height,Mother's height,number,yes,0.0,156.78 (5.98),50.5,157.11 (6.04)
+literacy,Mother's literacy,number,,0.1,1.53 (0.78),0.1,1.64 (0.70)
+anc_visits,Antenatal visits,number,yes,22.2,3.24 (1.01),42.3,4.80 (2.20)
+anc_timing,Timing of first antenatal visit,number,yes,23.8,3.65 (1.47),45.0,3.01 (1.47)
+delivery_facility,Place of delivery,category,yes,0.2,facility 93.4%; home/other 6.6%,38.7,facility 98.1%; home/other 1.9%
+deworming,Deworming,category,yes,22.3,no 55.8%; yes 44.2%,42.5,no 59.5%; yes 40.5%
+v190,Wealth quintile,category,,0.0,poorest 24.0%; poorer 20.5%; middle 18.8%; richer 18.5%; richest 18.2%,0.0,poorest 22.3%; poorer 19.7%; richest 19.4%; middle 19.3%; richer 19.3%
+v025,Residence,category,,0.0,rural 79.3%; urban 20.7%,0.0,rural 65.2%; urban 34.8%
+v024,Region,category,,0.0,west 25.6%; east 24.1%; south 23.0%; north 16.0%; kigali 11.3%,0.0,eastern province 26.3%; western province 24.5%; southern province 23.8%; northern province 14.9%; city of kigali 10.5%
+water_source_grp,Water source,category,,1.3,improved 78.8%; unimproved 21.2%,0.9,improved 82.2%; unimproved 17.8%
+water_time,Time to water source,number,,1.4,33.64 (32.61),0.9,32.68 (35.80)
+toilet_grp,Toilet type,category,,1.3,improved 70.4%; unimproved 27.0%; no facility 2.6%,0.9,improved 85.6%; unimproved 12.2%; no facility 2.2%
+shared_toilet,Shared toilet,category,,1.3,not shared 82.4%; shared 17.6%,0.9,not shared 79.9%; shared 20.1%
+v481,Health insurance,category,,0.0,yes 80.7%; no 19.3%,0.0,yes 87.6%; no 12.4%
+distance_problem,Distance to health facility a problem,category,,0.0,not a big problem 76.2%; big problem 23.8%,0.0,not a big problem 68.9%; big problem 31.1%
+v012,Mother's age,number,,0.0,31.87 (6.53),0.0,31.70 (7.06)
+v136,Household size,number,,0.0,5.38 (1.89),0.0,5.02 (1.79)
+v137,Children under five in household,number,,0.0,1.65 (0.73),0.0,1.46 (0.63)
+v404,Currently breastfeeding (v404),category,,0.0,yes 65.1%; no 34.9%,0.0,yes 56.8%; no 43.2%
+iron_supp,Iron supplementation,category,yes,22.2,yes 80.9%; no 19.1%,42.2,yes 92.6%; no 7.4%
+m17,Caesarean delivery,category,yes,0.0,no 84.1%; yes 15.9%,38.7,no 75.8%; yes 24.2%
+birth_size,Size at birth,category,yes,0.6,3.0 52.4%; 2.0 24.7%; 4.0 14.9%; 1.0 5.6%; 5.0 2.3%,38.9,3.0 45.4%; 2.0 31.2%; 4.0 14.8%; 1.0 5.1%; 5.0 3.6%
