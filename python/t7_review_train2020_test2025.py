@@ -15,7 +15,7 @@
 #   Part F  SHAP comparison of XGBoost trained separately on each survey (concern 7).
 #
 # How to run: put this file in the same folder as t3_seed_repeats_train2020_test2025.py and the two .dta files.
-#   Set DIRECTION below ("forward" or "reverse") and run it once for each direction.
+#   DIRECTION is already set to match the file name, so no editing is needed. Run each file once.
 #   Test it quickly first:  set the environment variable T7_QUICK=1 (3 tuning trials, 60 bootstraps).
 # Time: several hours at full size (Parts A, B and D tune many models). Progress is cached in t7_cache/
 #   (local files, never upload them: they hold per-child predictions). If it stops, start it again.
