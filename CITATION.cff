@@ -8,6 +8,5 @@ authors:
 license: MIT
 version: "1.0.0"
 date-released: "2026-11-06"
-# After you upload to Zenodo, add the DOI here:
-# doi: "10.5281/zenodo.XXXXXXX"
-# repository-code: "https://github.com/YOUR-USER/rwanda-stunting-temporal-validation"
+doi: "10.5281/zenodo.24010276"
+repository-code: "https://github.com/dushimep6/rwanda-stunting-temporal-validation"

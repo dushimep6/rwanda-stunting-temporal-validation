@@ -95,4 +95,6 @@ Python 3.14; scikit-learn 1.9.0, XGBoost 3.4.1, LightGBM 4.7.0, CatBoost 1.2.10,
 
 ## Licence and citation
 
-MIT (see `LICENSE`). See `CITATION.cff`. After the Zenodo upload, add the DOI there.
+MIT (see `LICENSE`). See `CITATION.cff`.
+
+Archived on Zenodo: [10.5281/zenodo.24010276](https://doi.org/10.5281/zenodo.24010276)
